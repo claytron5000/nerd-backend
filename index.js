@@ -3,6 +3,9 @@ const app = express();
 const port = 3000;
 const fs = require("fs");
 
+app.set("port", process.env.PORT || port);
+
+
 app.get('/', (req, res) => {
 
     fs.readFile("./sessions.json", "utf8", (err, data) => {
@@ -20,4 +23,4 @@ app.get('/', (req, res) => {
     })
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(app.get("port"), () => console.log(`Example app listening on port ${port}!`))
